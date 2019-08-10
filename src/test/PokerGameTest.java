@@ -20,7 +20,7 @@ public class PokerGameTest {
     private static final Card NINE_C = new Card("9", "C");
 
     @Test
-    public void should_return_woinner_when_compare_according_to_big_number() {
+    public void should_return_winner_when_compare_big_number() {
         //Given
         List<Card> cards_1 = Arrays.asList(SIX_C, TWO_H, THREE_D, FOUR_S, FIVE_H);
         List<Card> cards_2 = Arrays.asList(THREE_D, NINE_C, FOUR_S, EIGHT_S, TWO_H);
@@ -28,5 +28,16 @@ public class PokerGameTest {
         String result = PokerGame.play(cards_1, cards_2);
         //Then
         Assert.assertEquals("The Second Player Win!",result);
+    }
+
+    @Test
+    public void should_return_dogfall_when_both_side_is_equal() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(SIX_C, TWO_H, THREE_D, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, TWO_H, FOUR_S);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("Dogfall",result);
     }
 }
