@@ -1,3 +1,7 @@
+package test;
+
+import main.Card;
+import main.PokerGame;
 import org.junit.Assert;
 import org.junit.Test;
 
