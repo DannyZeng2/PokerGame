@@ -299,5 +299,17 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The Second Player Win!", result_1);
     }
+    @Test
+    public void should_return_winner_when_four_of_a_kind_compare_to_full_house() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, S2, S12);
+        List<Card> cards_2 = Arrays.asList(C2, D2, H2, HAce, DAce);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The First Player Win!", result_1);
+    }
+
+
 
 }
