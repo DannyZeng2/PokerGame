@@ -6,24 +6,57 @@ public class Card {
     private String suit;
 
     public Card(String number, String suit) {
-        this.number = number;
-        this.suit = suit;
+        this.number = formatNumber(number);
+        this.suit = formatSuit(suit);
     }
 
-    public String getNumber() {
+    public int getNumber() {
+        return Integer.parseInt(number);
+    }
+
+    private String formatNumber(String number) {
+        switch (number) {
+            case "T":
+                number = "10";
+                break;
+            case "J":
+                number = "11";
+                break;
+            case "Q":
+                number = "12";
+                break;
+            case "K":
+                number = "13";
+                break;
+            case "A":
+                number = "99";
+                break;
+        }
+
         return number;
-    }
 
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getSuit() {
         return suit;
     }
 
-    public void setSuit(String suit) {
-        this.suit = suit;
+    private String formatSuit(String suit) {
+        switch (suit) {
+            case "D":
+                suit = "1";
+                break;
+            case "C":
+                suit = "2";
+                break;
+            case "H":
+                suit = "3";
+                break;
+            default:
+                suit = "4";
+
+        }
+        return suit;
     }
 
 }

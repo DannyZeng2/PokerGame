@@ -15,9 +15,12 @@ public class PokerGameTest {
     private static final Card FOUR_S = new Card("4", "S");
     private static final Card FIVE_H = new Card("5", "H");
     private static final Card SIX_C = new Card("6", "C");
-    public static final Card SEVEN_D = new Card("7", "D");
+    private static final Card SEVEN_D = new Card("7", "D");
     private static final Card EIGHT_S = new Card("8", "S");
     private static final Card NINE_C = new Card("9", "C");
+    private static final Card Jack_H = new Card("J", "K");
+    private static final Card Queen_S = new Card("Q", "S");
+
 
     @Test
     public void should_return_winner_when_compare_big_number() {
