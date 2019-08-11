@@ -20,7 +20,24 @@ public class PokerGame {
 
     }
 
-    public static Map<Card,Integer> checkCards(List<Card> cardList) {
+    public static String judgeCardsType(List<Card> cardList) {
+        String type = "High Card";
+        Map<Card, Integer> map = checkCards(cardList);
+
+        if(map.size() == 4) {
+            type = "Pair";
+        } else if(map.size() == 3 && maxMapValue(map) == 2){
+            type = "Two pair";
+        } else if(map.size() == 3 && maxMapValue(map) == 3) {
+            type = "Three of a Kind";
+        } else if(map.size() == 2 ) {
+            type = "Four of a Kind";
+        }
+
+        return type;
+    }
+
+    private static Map<Card,Integer> checkCards(List<Card> cardList) {
         int count = 1;
         List<Card> cards = cardList.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
         Map<Card,Integer> cardMap = new HashMap<Card,Integer>();
@@ -33,9 +50,13 @@ public class PokerGame {
                 cardMap.put(cards.get(i),1);
             }
         }
-
         return cardMap;
+    }
 
+    private static int maxMapValue(Map<Card,Integer> map) {
+        List<Integer> values =new ArrayList<Integer>(map.values());
+        Collections.sort(values);
+        return values.get(values.size()-1);
     }
 
 }

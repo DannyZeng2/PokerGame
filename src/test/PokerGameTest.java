@@ -69,4 +69,21 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The Second Player Win!",result);
     }
+
+    @Test
+    public void test_card_type() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(SIX_C, Jack_H, Ten_C, King_D, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, FIVE_H);
+        List<Card> cards_3 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, THREE_D);
+
+        //When
+        String result_1 = PokerGame.judgeCardsType(cards_1);
+        String result_2 = PokerGame.judgeCardsType(cards_2);
+        String result_3 = PokerGame.judgeCardsType(cards_3);
+        //Then
+        Assert.assertEquals("High Card",result_1);
+        Assert.assertEquals("Pair",result_2);
+        Assert.assertEquals("Three of a Kind",result_3);
+    }
 }
