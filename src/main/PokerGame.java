@@ -22,14 +22,7 @@ public class PokerGame {
         }
 
         if (judgeCardsType(cards_1) == HIGHT_CARD && judgeCardsType(cards_2) == HIGHT_CARD) {
-            int bigNum1 = cards1.get(4).getNumber();
-            int bigNum2 = cards2.get(4).getNumber();
-
-            if (bigNum1 == bigNum2) {
-                return "Dogfall";
-            } else {
-                return bigNum1 > bigNum2 ? "The First Player Win!" : "The Second Player Win!";
-            }
+            return compareHighCard(cards1, cards2);
         }
 
         if (judgeCardsType(cards_1) == PAIR && judgeCardsType(cards_2) == PAIR) {
@@ -38,7 +31,7 @@ public class PokerGame {
             int bigPair1 = getKey(map1,2).getNumber();
             int bigPair2 = getKey(map2,2).getNumber();
             if (bigPair1 == bigPair2) {
-                return "Dogfall";
+               return compareHighCard(cards_1,cards_2);
             }else {
                 return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
             }
@@ -47,6 +40,27 @@ public class PokerGame {
 
         return result;
 
+    }
+
+    private static String compareHighCard(List<Card> cards1, List<Card> cards2) {
+
+        Set<Card> set1 = new HashSet<Card>(cards1);
+        Set<Card> set2 = new HashSet<Card>(cards2);
+
+        List<Card> list1 = new ArrayList<Card>(set1);
+        List<Card> list2 = new ArrayList<Card>(set2);
+
+        List<Card> result1 = list1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
+        List<Card> result2 = list2.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
+
+        int bigNum1 = result1.get(result1.size()-1).getNumber();
+        int bigNum2 = result2.get(result2.size()-1).getNumber();
+
+        if (bigNum1 == bigNum2) {
+            return "Dogfall";
+        } else {
+            return bigNum1 > bigNum2 ? "The First Player Win!" : "The Second Player Win!";
+        }
     }
 
     public static int judgeCardsType(List<Card> cardList) {
