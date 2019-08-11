@@ -75,15 +75,23 @@ public class PokerGameTest {
         //Given
         List<Card> cards_1 = Arrays.asList(SIX_C, Jack_H, Ten_C, King_D, FIVE_H);
         List<Card> cards_2 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, FIVE_H);
-        List<Card> cards_3 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, THREE_D);
+        List<Card> cards_3 = Arrays.asList(THREE_D, TWO_H, THREE_D, TWO_H, FIVE_H);
+        List<Card> cards_4 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, THREE_D);
+        List<Card> cards_5 = Arrays.asList(THREE_D, THREE_D, THREE_D, FOUR_S, THREE_D);
 
         //When
-        String result_1 = PokerGame.judgeCardsType(cards_1);
-        String result_2 = PokerGame.judgeCardsType(cards_2);
-        String result_3 = PokerGame.judgeCardsType(cards_3);
+        int result_1 = PokerGame.judgeCardsType(cards_1);
+        int result_2 = PokerGame.judgeCardsType(cards_2);
+        int result_3 = PokerGame.judgeCardsType(cards_3);
+        int result_4 = PokerGame.judgeCardsType(cards_4);
+        int result_5 = PokerGame.judgeCardsType(cards_5);
         //Then
-        Assert.assertEquals("High Card",result_1);
-        Assert.assertEquals("Pair",result_2);
-        Assert.assertEquals("Three of a Kind",result_3);
+        Assert.assertEquals(1,result_1);
+        Assert.assertEquals(2,result_2);
+        Assert.assertEquals(3,result_3);
+        Assert.assertEquals(4,result_4);
+        Assert.assertEquals(5,result_5);
+
     }
+
 }
