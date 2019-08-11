@@ -111,4 +111,15 @@ public class PokerGameTest {
         Assert.assertEquals("Dogfall",result);
     }
 
+    @Test
+    public void should_return_winner_when_the_compare_high_card_with_pair() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, SEVEN_D, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(TWO_H, SEVEN_D, TWO_H, FOUR_S, FIVE_H);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!",result);
+    }
+
 }

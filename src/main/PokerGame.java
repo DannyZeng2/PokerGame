@@ -17,14 +17,18 @@ public class PokerGame {
         List<Card> cards1 = cards_1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
         List<Card> cards2 = cards_2.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
 
+        if (judgeCardsType(cards_1) != judgeCardsType(cards_2)) {
+            return judgeCardsType(cards1) > judgeCardsType(cards_2) ? "The First Player Win!" : "The Second Player Win!";
+        }
+
         if (judgeCardsType(cards_1) == HIGHT_CARD && judgeCardsType(cards_2) == HIGHT_CARD) {
             int bigNum1 = cards1.get(4).getNumber();
             int bigNum2 = cards2.get(4).getNumber();
 
             if (bigNum1 == bigNum2) {
-                result = "Dogfall";
+                return "Dogfall";
             } else {
-                result = bigNum1 > bigNum2 ? "The First Player Win!" : "The Second Player Win!";
+                return bigNum1 > bigNum2 ? "The First Player Win!" : "The Second Player Win!";
             }
         }
 
@@ -34,9 +38,9 @@ public class PokerGame {
             int bigPair1 = getKey(map1,2).getNumber();
             int bigPair2 = getKey(map2,2).getNumber();
             if (bigPair1 == bigPair2) {
-                result = "Dogfall";
+                return "Dogfall";
             }else {
-                result = bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
+                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
             }
 
         }
