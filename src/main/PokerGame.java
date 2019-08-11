@@ -17,27 +17,25 @@ public class PokerGame {
         List<Card> cards1 = cards_1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
         List<Card> cards2 = cards_2.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
 
-        if (judgeCardsType(cards_1) != judgeCardsType(cards_2)) {
-            return judgeCardsType(cards1) > judgeCardsType(cards_2) ? "The First Player Win!" : "The Second Player Win!";
+        int cardsType;
+        int cardsType1 = PokerType.judgeCardsType(cards_1);
+        int cardsType2 = PokerType.judgeCardsType(cards_2);
+
+        if (cardsType1 != cardsType2) {
+            return PokerType.judgeCardsType(cards1) > cardsType2 ? "The First Player Win!" : "The Second Player Win!";
+        } else {
+            cardsType = cardsType1;
         }
 
-        if (judgeCardsType(cards_1) == STRAIGHT && judgeCardsType(cards_2) == STRAIGHT) {
+        if (cardsType == STRAIGHT|| cardsType == HIGHT_CARD) {
             return compareHighCard(cards1, cards2);
         }
 
-        if (judgeCardsType(cards_1) == HIGHT_CARD && judgeCardsType(cards_2) == HIGHT_CARD) {
-            return compareHighCard(cards1, cards2);
-        }
-
-        if (judgeCardsType(cards_1) == PAIR && judgeCardsType(cards_2) == PAIR) {
+        if (cardsType == PAIR || cardsType == TWO_PAIR) {
             return compareRepeatCard(cards_1, cards_2, 2);
         }
 
-        if (judgeCardsType(cards_1) == TWO_PAIR && judgeCardsType(cards_2) == TWO_PAIR) {
-            return compareRepeatCard(cards_1, cards_2, 2);
-        }
-
-        if (judgeCardsType(cards_1) == THREE_OF_KIND && judgeCardsType(cards_2) == THREE_OF_KIND) {
+        if (cardsType == THREE_OF_KIND ) {
             return compareRepeatCard(cards_1, cards_2, 3);
         }
 
@@ -46,8 +44,8 @@ public class PokerGame {
     }
 
     private static String compareRepeatCard(List<Card> cards_1, List<Card> cards_2, int times) {
-        Map<Card, Integer> map1 = checkCards(cards_1);
-        Map<Card, Integer> map2 = checkCards(cards_2);
+        Map<Card, Integer> map1 = PokerType.checkCards(cards_1);
+        Map<Card, Integer> map2 = PokerType.checkCards(cards_2);
         int bigPair1 = getKey(map1, times).getNumber();
         int bigPair2 = getKey(map2, times).getNumber();
         if (bigPair1 == bigPair2) {
@@ -78,47 +76,6 @@ public class PokerGame {
         }
     }
 
-    public static int judgeCardsType(List<Card> cardList) {
-        Map<Card, Integer> map = checkCards(cardList);
-
-        if (map.size() == 4) {
-            return PAIR;
-        } else if (map.size() == 3 && maxMapValue(map) == 2) {
-            return TWO_PAIR;
-        } else if (map.size() == 3 && maxMapValue(map) == 3) {
-            return THREE_OF_KIND;
-        } else if (map.size() == 2) {
-            return FOUR_OF_KIND;
-        } else if (isStraight(cardList)){
-            return STRAIGHT;
-        }
-
-        return HIGHT_CARD;
-    }
-
-    private static Map<Card, Integer> checkCards(List<Card> cardList) {
-        int count = 1;
-        List<Card> cards = cardList.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
-        Map<Card, Integer> cardMap = new HashMap<>();
-        cardMap.put(cards.get(0), count);
-        for (int i = 1; i < cards.size(); i++) {
-            if (cards.get(i).getNumber() == cards.get(i - 1).getNumber()) {
-                count++;
-                cardMap.put(cards.get(i), count);
-            } else {
-                count = 1;
-                cardMap.put(cards.get(i), count);
-            }
-        }
-        return cardMap;
-    }
-
-    private static int maxMapValue(Map<Card, Integer> map) {
-        List<Integer> values = new ArrayList<>(map.values());
-        Collections.sort(values);
-        return values.get(values.size() - 1);
-    }
-
     private static Card getKey(Map<Card, Integer> map, int value) {
         List<Card> pairList = new ArrayList<>();
         for (Card card : map.keySet()) {
@@ -135,12 +92,4 @@ public class PokerGame {
         return pairList.get(0).getNumber() > pairList.get(1).getNumber() ? pairList.get(0) : pairList.get(1);
     }
 
-    private static boolean isStraight(List<Card> cardList) {
-        for(int i=1;i<cardList.size();i++){
-            if(cardList.get(i).getNumber() != cardList.get(i-1).getNumber() + 1){
-                return false;
-            }
-        }
-        return true;
-    }
 }

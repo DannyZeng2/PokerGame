@@ -2,6 +2,7 @@ package test;
 
 import main.Card;
 import main.PokerGame;
+import main.PokerType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -67,11 +68,11 @@ public class PokerGameTest {
         List<Card> cards_4 = Arrays.asList(D3, H2, D3, S4, D3);
         List<Card> cards_5 = Arrays.asList(D3, D3, D3, S4, D3);
         //When
-        int result_1 = PokerGame.judgeCardsType(cards_1);
-        int result_2 = PokerGame.judgeCardsType(cards_2);
-        int result_3 = PokerGame.judgeCardsType(cards_3);
-        int result_4 = PokerGame.judgeCardsType(cards_4);
-        int result_5 = PokerGame.judgeCardsType(cards_5);
+        int result_1 = PokerType.judgeCardsType(cards_1);
+        int result_2 = PokerType.judgeCardsType(cards_2);
+        int result_3 = PokerType.judgeCardsType(cards_3);
+        int result_4 = PokerType.judgeCardsType(cards_4);
+        int result_5 = PokerType.judgeCardsType(cards_5);
         //Then
         Assert.assertEquals(1, result_1);
         Assert.assertEquals(2, result_2);
