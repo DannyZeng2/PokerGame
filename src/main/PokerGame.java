@@ -21,6 +21,10 @@ public class PokerGame {
             return judgeCardsType(cards1) > judgeCardsType(cards_2) ? "The First Player Win!" : "The Second Player Win!";
         }
 
+        if (judgeCardsType(cards_1) == STRAIGHT && judgeCardsType(cards_2) == STRAIGHT) {
+            return compareHighCard(cards1, cards2);
+        }
+
         if (judgeCardsType(cards_1) == HIGHT_CARD && judgeCardsType(cards_2) == HIGHT_CARD) {
             return compareHighCard(cards1, cards2);
         }

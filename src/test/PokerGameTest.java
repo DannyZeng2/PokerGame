@@ -225,7 +225,7 @@ public class PokerGameTest {
     }
 
     @Test
-    public void should_return_winner_when_the_compare_Straight_card() {
+    public void should_return_winner_when_the_compare_Straight_card_with_other() {
         //Given
         List<Card> cards_1 = Arrays.asList(H2, D3, S4, H5, C6);
         List<Card> cards_2 = Arrays.asList(H2, D13, D13, D13, H5);
@@ -233,5 +233,16 @@ public class PokerGameTest {
         String result_1 = PokerGame.play(cards_1, cards_2);
         //Then
         Assert.assertEquals("The First Player Win!", result_1);
+    }
+
+    @Test
+    public void should_return_winner_when_the_compare_beyween_Straight_card() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(H2, D3, S4, H5, C6);
+        List<Card> cards_2 = Arrays.asList(S4, H5, C6, D7, S8);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!", result_1);
     }
 }
