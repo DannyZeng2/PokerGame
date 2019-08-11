@@ -11,26 +11,26 @@ import java.util.Map;
 
 public class PokerGameTest {
 
-    private static final Card TWO_H = new Card("2", "H");
-    private static final Card THREE_D = new Card("3", "D");
-    private static final Card FOUR_S = new Card("4", "S");
-    private static final Card FIVE_H = new Card("5", "H");
-    private static final Card SIX_C = new Card("6", "C");
-    private static final Card SEVEN_D = new Card("7", "D");
-    private static final Card EIGHT_S = new Card("8", "S");
-    private static final Card NINE_C = new Card("9", "C");
-    private static final Card Ten_C = new Card("10", "C");
-    private static final Card Jack_H = new Card("J", "H");
-    private static final Card Queen_S = new Card("Q", "S");
-    private static final Card King_D = new Card("K", "D");
-    private static final Card Ace_D = new Card("A", "S");
+    private static final Card H2 = new Card("2", "H");
+    private static final Card D3 = new Card("3", "D");
+    private static final Card S4 = new Card("4", "S");
+    private static final Card H5 = new Card("5", "H");
+    private static final Card C6 = new Card("6", "C");
+    private static final Card D7 = new Card("7", "D");
+    private static final Card S8 = new Card("8", "S");
+    private static final Card C9 = new Card("9", "C");
+    private static final Card C10 = new Card("10", "C");
+    private static final Card H11 = new Card("J", "H");
+    private static final Card S12 = new Card("Q", "S");
+    private static final Card D13 = new Card("K", "D");
+    private static final Card DAce= new Card("A", "S");
 
 
     @Test
     public void should_return_winner_when_compare_big_number() {
         //Given
-        List<Card> cards_1 = Arrays.asList(SIX_C, TWO_H, THREE_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(THREE_D, NINE_C, FOUR_S, EIGHT_S, TWO_H);
+        List<Card> cards_1 = Arrays.asList(C6, H2, D3, S4, H5);
+        List<Card> cards_2 = Arrays.asList(D3, C9, S4, S8, H2);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -40,8 +40,8 @@ public class PokerGameTest {
     @Test
     public void should_return_winner_when_compare_big_number_include_TJQKA() {
         //Given
-        List<Card> cards_1 = Arrays.asList(SIX_C, Jack_H, Ten_C, King_D, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(Queen_S, Ace_D, FOUR_S, EIGHT_S, TWO_H);
+        List<Card> cards_1 = Arrays.asList(C6, H11, C10, D13, H5);
+        List<Card> cards_2 = Arrays.asList(S12, DAce, S4, S8, H2);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -51,8 +51,8 @@ public class PokerGameTest {
     @Test
     public void should_return_dogfall_when_both_side_is_equal() {
         //Given
-        List<Card> cards_1 = Arrays.asList(SIX_C, TWO_H, THREE_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, TWO_H, FOUR_S);
+        List<Card> cards_1 = Arrays.asList(C6, H2, D3, S4, H5);
+        List<Card> cards_2 = Arrays.asList(C6, H5, D3, H2, S4);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -62,11 +62,11 @@ public class PokerGameTest {
     @Test
     public void test_card_type() {
         //Given
-        List<Card> cards_1 = Arrays.asList(SIX_C, Jack_H, Ten_C, King_D, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, FIVE_H);
-        List<Card> cards_3 = Arrays.asList(THREE_D, TWO_H, THREE_D, TWO_H, FIVE_H);
-        List<Card> cards_4 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, THREE_D);
-        List<Card> cards_5 = Arrays.asList(THREE_D, THREE_D, THREE_D, FOUR_S, THREE_D);
+        List<Card> cards_1 = Arrays.asList(C6, H11, C10, D13, H5);
+        List<Card> cards_2 = Arrays.asList(D3, H2, D3, S4, H5);
+        List<Card> cards_3 = Arrays.asList(D3, H2, D3, H2, H5);
+        List<Card> cards_4 = Arrays.asList(D3, H2, D3, S4, D3);
+        List<Card> cards_5 = Arrays.asList(D3, D3, D3, S4, D3);
 
         //When
         int result_1 = PokerGame.judgeCardsType(cards_1);
@@ -86,11 +86,11 @@ public class PokerGameTest {
     @Test
     public void should_return_winner_when_the_compare_according_to_pair() {
         //Given
-        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
+        List<Card> cards_1 = Arrays.asList(D13, H2, D13, S4, H5);
+        List<Card> cards_2 = Arrays.asList(C6, H5, D3, C6, S4);
 
-        List<Card> cards_3 = Arrays.asList(TWO_H, TWO_H, King_D, FOUR_S, FIVE_H);
-        List<Card> cards_4 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
+        List<Card> cards_3 = Arrays.asList(H2, H2, D13, S4, H5);
+        List<Card> cards_4 = Arrays.asList(C6, H5, D3, C6, S4);
 
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
@@ -103,8 +103,8 @@ public class PokerGameTest {
     @Test
     public void should_return_dogfall_when_the_compare_according_to_pair() {
         //Given
-        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
+        List<Card> cards_1 = Arrays.asList(D13, H2, D13, S4, H5);
+        List<Card> cards_2 = Arrays.asList(D13, H2, D13, S4, H5);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -114,8 +114,8 @@ public class PokerGameTest {
     @Test
     public void should_return_winner_when_the_compare_high_card_with_pair() {
         //Given
-        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, SEVEN_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(TWO_H, SEVEN_D, TWO_H, FOUR_S, FIVE_H);
+        List<Card> cards_1 = Arrays.asList(D13, H2, D7, S4, H5);
+        List<Card> cards_2 = Arrays.asList(H2, D7, H2, S4, H5);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -125,11 +125,11 @@ public class PokerGameTest {
     @Test
     public void should_compare_with_high_card_when_the_pair_is_same() {
         //Given
-        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, SEVEN_D, TWO_H, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(TWO_H, SEVEN_D, TWO_H, FOUR_S, FIVE_H);
+        List<Card> cards_1 = Arrays.asList(D13, H2, D7, H2, H5);
+        List<Card> cards_2 = Arrays.asList(H2, D7, H2, S4, H5);
 
-        List<Card> cards_3 = Arrays.asList(FOUR_S, FIVE_H, SEVEN_D, TWO_H, TWO_H);
-        List<Card> cards_4 = Arrays.asList(TWO_H, Ace_D, TWO_H, FOUR_S, FIVE_H);
+        List<Card> cards_3 = Arrays.asList(S4, H5, D7, H2, H2);
+        List<Card> cards_4 = Arrays.asList(H2, DAce, H2, S4, H5);
 
 
         //When
@@ -143,11 +143,11 @@ public class PokerGameTest {
     @Test
     public void should_return_winner_when_the_compare_two_pair_card() {
         //Given
-        List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(FIVE_H, King_D, King_D, FOUR_S, FIVE_H);
+        List<Card> cards_1 = Arrays.asList(H2, H2, H5, S4, H5);
+        List<Card> cards_2 = Arrays.asList(H5, D13, D13, S4, H5);
 
-        List<Card> cards_3 = Arrays.asList(Ace_D, TWO_H, FIVE_H, Ace_D, FIVE_H);
-        List<Card> cards_4 = Arrays.asList(TWO_H, King_D, King_D, FIVE_H, FIVE_H);
+        List<Card> cards_3 = Arrays.asList(DAce, H2, H5, DAce, H5);
+        List<Card> cards_4 = Arrays.asList(H2, D13, D13, H5, H5);
 
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
@@ -160,8 +160,8 @@ public class PokerGameTest {
     @Test
     public void should_return_dogfall_when_the_two_pair_card_is_same() {
         //Given
-        List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList( FIVE_H, FIVE_H,TWO_H,FOUR_S,  TWO_H);
+        List<Card> cards_1 = Arrays.asList(H2, H2, H5, S4, H5);
+        List<Card> cards_2 = Arrays.asList( H5, H5,H2,S4,  H2);
 
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
@@ -172,8 +172,8 @@ public class PokerGameTest {
     @Test
     public void should_compare_with_high_card_when_the_two_pair_card_is_same() {
         //Given
-        List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(TWO_H, TWO_H, FIVE_H, King_D, FIVE_H);
+        List<Card> cards_1 = Arrays.asList(H2, H2, H5, S4, H5);
+        List<Card> cards_2 = Arrays.asList(H2, H2, H5, D13, H5);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
