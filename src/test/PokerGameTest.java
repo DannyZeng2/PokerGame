@@ -60,17 +60,6 @@ public class PokerGameTest {
     }
 
     @Test
-    public void should_return_winner_when_the_compare_according_to_pair() {
-        //Given
-        List<Card> cards_1 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
-        //When
-        String result = PokerGame.play(cards_1, cards_2);
-        //Then
-        Assert.assertEquals("The Second Player Win!",result);
-    }
-
-    @Test
     public void test_card_type() {
         //Given
         List<Card> cards_1 = Arrays.asList(SIX_C, Jack_H, Ten_C, King_D, FIVE_H);
@@ -92,6 +81,34 @@ public class PokerGameTest {
         Assert.assertEquals(4,result_4);
         Assert.assertEquals(5,result_5);
 
+    }
+
+    @Test
+    public void should_return_winner_when_the_compare_according_to_pair() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
+
+        List<Card> cards_3 = Arrays.asList(TWO_H, TWO_H, King_D, FOUR_S, FIVE_H);
+        List<Card> cards_4 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
+
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        String result_2 = PokerGame.play(cards_3, cards_4);
+        //Then
+        Assert.assertEquals("The First Player Win!",result_1);
+        Assert.assertEquals("The Second Player Win!",result_2);
+    }
+
+    @Test
+    public void should_return_dogfall_when_the_compare_according_to_pair() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(King_D, TWO_H, King_D, FOUR_S, FIVE_H);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("Dogfall",result);
     }
 
 }
