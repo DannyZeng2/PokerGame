@@ -186,6 +186,17 @@ public class PokerGameTest {
     }
 
     @Test
+    public void should_return_winner_when_compare_three_of_kind_with_two_pair() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(H2, H2, S4, S4, H5);
+        List<Card> cards_2 = Arrays.asList(D13, D13, D13, H5, H11);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!", result);
+    }
+
+    @Test
     public void should_return_winner_when_the_compare_three_of_a_kind_card() {
         //Given
         List<Card> cards_1 = Arrays.asList(H2, H2, H2, S4, H5);
