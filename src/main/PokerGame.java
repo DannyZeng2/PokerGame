@@ -36,8 +36,27 @@ public class PokerGame {
         if (cardsType == FLUSH ) {
             return compareSuit(cards_1, cards_2);
         }
+
+        if (cardsType == FUll_HOUSE ) {
+           return compareFullHouse(cards_1, cards_2);
+        }
+
         return result;
 
+    }
+
+    private static String compareFullHouse(List<Card> cards_1, List<Card> cards_2) {
+        Map<Card, Integer> map1 = PokerType.checkCards(cards_1);
+        Map<Card, Integer> map2 = PokerType.checkCards(cards_2);
+        int threeKind1 = getKey(map1, 3).getNumber();
+        int threeKind2 = getKey(map2, 3).getNumber();
+        int pair1 = getKey(map1, 2).getNumber();
+        int pair2 = getKey(map2, 2).getNumber();
+        if (threeKind1 == threeKind2) {
+            return pair1 > pair2 ? "The First Player Win!" : "The Second Player Win!";
+        } else {
+            return threeKind1 > threeKind2 ? "The First Player Win!" : "The Second Player Win!";
+        }
     }
 
     private static String compareSuit(List<Card> cards_1, List<Card> cards_2) {

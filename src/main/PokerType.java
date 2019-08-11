@@ -16,8 +16,10 @@ public class PokerType {
             return TWO_PAIR;
         } else if (map.size() == 3 && maxMapValue(map) == 3) {
             return THREE_OF_KIND;
-        } else if (map.size() == 2) {
+        } else if (map.size() == 2 && maxMapValue(map) == 4) {
             return FOUR_OF_KIND;
+        } else if (map.size() == 2) {
+            return FUll_HOUSE;
         } else if (isStraight(cardList)){
             return STRAIGHT;
         }else if (isFlush(cardList)) {

@@ -59,14 +59,11 @@ public class PokerGameTest {
         int result_2 = PokerType.judgeCardsType(cards_2);
         int result_3 = PokerType.judgeCardsType(cards_3);
         int result_4 = PokerType.judgeCardsType(cards_4);
-        int result_5 = PokerType.judgeCardsType(cards_5);
         //Then
         Assert.assertEquals(1, result_1);
         Assert.assertEquals(2, result_2);
         Assert.assertEquals(3, result_3);
         Assert.assertEquals(4, result_4);
-        Assert.assertEquals(5, result_5);
-
     }
 
     @Test
@@ -205,7 +202,7 @@ public class PokerGameTest {
     public void should_compare_with_high_card_when_three_of_a_kind_card_is_same() {
         //Given
         List<Card> cards_1 = Arrays.asList(H2, H2, H2, S4, H5);
-        List<Card> cards_2 = Arrays.asList(H2, D13, H2, D13, H2);
+        List<Card> cards_2 = Arrays.asList(H2, D13, H2, SAce, H2);
         //When
         String result = PokerGame.play(cards_1, cards_2);
         //Then
@@ -250,6 +247,16 @@ public class PokerGameTest {
         //Given
         List<Card> cards_1 = Arrays.asList(H2, H11, H3, HAce, H6);
         List<Card> cards_2 = Arrays.asList(S4, S5, S8, S3, S12);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!", result_1);
+    }
+    @Test
+    public void should_return_winner_when_both_side_is_full_house() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, HAce, DAce);
+        List<Card> cards_2 = Arrays.asList(HAce, CAce, C12, SAce, S12);
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
         //Then
