@@ -190,4 +190,17 @@ public class PokerGameTest {
         Assert.assertEquals("The Second Player Win!", result_1);
         Assert.assertEquals("The First Player Win!", result_2);
     }
+
+    @Test
+    public void should_compare_with_high_card_when_three_of_a_kind_card_is_same() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(H2, H2, H2, S4, H5);
+        List<Card> cards_2 = Arrays.asList(H2, D13, H2, D13, H2);
+
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+
+        //Then
+        Assert.assertEquals("The Second Player Win!", result);
+    }
 }
