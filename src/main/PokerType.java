@@ -20,11 +20,14 @@ public class PokerType {
             return FOUR_OF_KIND;
         } else if (map.size() == 2) {
             return FUll_HOUSE;
-        } else if (isStraight(cardList)){
+        } else if (isStraight(cardList) && !isFlush(cardList)){
             return STRAIGHT;
-        }else if (isFlush(cardList)) {
+        }else if (isFlush(cardList) && !isStraight(cardList)) {
             return FLUSH;
+        }else if (isStraight(cardList) && isFlush(cardList)){
+            return STRAIGHT_FLUSH;
         }
+
 
         return HIGHT_CARD;
     }

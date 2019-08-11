@@ -45,6 +45,10 @@ public class PokerGame {
            return compareFullHouse(cards_1, cards_2);
         }
 
+        if(cardsType == STRAIGHT_FLUSH) {
+            return compareSuit(cards_1, cards_2);
+        }
+
         return result;
 
     }
