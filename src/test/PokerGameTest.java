@@ -234,5 +234,15 @@ public class PokerGameTest {
         Assert.assertEquals("The Second Player Win!", result_1);
     }
 
+    @Test
+    public void should_return_winner_when_both_side_flush_is_same() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(H2, H11, H3, H5, H6);
+        List<Card> cards_2 = Arrays.asList(H2, H11, H13, H5, H6);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!", result_1);
+    }
 
 }
