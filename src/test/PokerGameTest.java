@@ -221,7 +221,7 @@ public class PokerGameTest {
     }
 
     @Test
-    public void should_return_winner_when_the_compare_beyween_Straight_card() {
+    public void should_return_winner_when_the_compare_beyween_straight_card() {
         //Given
         List<Card> cards_1 = Arrays.asList(H2, D3, S4, H5, C6);
         List<Card> cards_2 = Arrays.asList(S4, H5, C6, D7, S8);
@@ -266,5 +266,27 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The Second Player Win!", result_1);
         Assert.assertEquals("The First Player Win!", result_2);
+    }
+
+    @Test
+    public void should_return_winner_when_full_house_compare_to_straight() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, HAce, DAce);
+        List<Card> cards_2 = Arrays.asList(H2, D3, S4, H5, C6);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The First Player Win!", result_1);
+    }
+
+    @Test
+    public void should_return_winner_when_full_house_compare_to_flush() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, HAce, DAce);
+        List<Card> cards_2 = Arrays.asList(S4, S5, S8, S3, S12);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The First Player Win!", result_1);
     }
 }
