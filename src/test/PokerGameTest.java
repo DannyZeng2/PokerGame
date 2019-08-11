@@ -202,4 +202,14 @@ public class PokerGameTest {
         Assert.assertEquals("The Second Player Win!", result);
     }
 
+    @Test
+    public void should_return_winner_when_the_compare_Straight_card() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(H2, D3, S4, H5, C6);
+        List<Card> cards_2 = Arrays.asList(H2, D13, D13, D13, H5);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The First Player Win!", result_1);
+    }
 }
