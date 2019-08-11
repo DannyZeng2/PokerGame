@@ -30,45 +30,31 @@ public class PokerGame {
         }
 
         if (judgeCardsType(cards_1) == PAIR && judgeCardsType(cards_2) == PAIR) {
-            Map<Card, Integer> map1 = checkCards(cards_1);
-            Map<Card, Integer> map2 = checkCards(cards_2);
-            int bigPair1 = getKey(map1, 2).getNumber();
-            int bigPair2 = getKey(map2, 2).getNumber();
-            if (bigPair1 == bigPair2) {
-                return compareHighCard(cards_1, cards_2);
-            } else {
-                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
-            }
-
+            return compareRepeatCard(cards_1, cards_2, 2);
         }
 
         if (judgeCardsType(cards_1) == TWO_PAIR && judgeCardsType(cards_2) == TWO_PAIR) {
-            Map<Card, Integer> map1 = checkCards(cards_1);
-            Map<Card, Integer> map2 = checkCards(cards_2);
-            int bigPair1 = getKey(map1, 2).getNumber();
-            int bigPair2 = getKey(map2, 2).getNumber();
-            if (bigPair1 == bigPair2) {
-                return compareHighCard(cards_1, cards_2);
-            } else {
-                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
-            }
-
+            return compareRepeatCard(cards_1, cards_2, 2);
         }
 
         if (judgeCardsType(cards_1) == THREE_OF_KIND && judgeCardsType(cards_2) == THREE_OF_KIND) {
-            Map<Card, Integer> map1 = checkCards(cards_1);
-            Map<Card, Integer> map2 = checkCards(cards_2);
-            int bigPair1 = getKey(map1, 3).getNumber();
-            int bigPair2 = getKey(map2, 3).getNumber();
-            if (bigPair1 == bigPair2) {
-                return compareHighCard(cards_1, cards_2);
-            } else {
-                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
-            }
+            return compareRepeatCard(cards_1, cards_2, 3);
         }
 
         return result;
 
+    }
+
+    private static String compareRepeatCard(List<Card> cards_1, List<Card> cards_2, int times) {
+        Map<Card, Integer> map1 = checkCards(cards_1);
+        Map<Card, Integer> map2 = checkCards(cards_2);
+        int bigPair1 = getKey(map1, times).getNumber();
+        int bigPair2 = getKey(map2, times).getNumber();
+        if (bigPair1 == bigPair2) {
+            return compareHighCard(cards_1, cards_2);
+        } else {
+            return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
+        }
     }
 
     private static String compareHighCard(List<Card> cards1, List<Card> cards2) {
