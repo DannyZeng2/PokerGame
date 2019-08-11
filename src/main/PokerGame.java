@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import static main.PokerTypeEnum.*;
 
 public class PokerGame {
-
     public static String play(List<Card> cards_1, List<Card> cards_2) {
         String result = "";
         List<Card> cards1 = cards_1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
@@ -50,7 +49,6 @@ public class PokerGame {
         }
 
         return result;
-
     }
 
     private static String compareFullHouse(List<Card> cards_1, List<Card> cards_2) {
@@ -75,7 +73,6 @@ public class PokerGame {
         } else {
             return suit1 > suit2 ? "The First Player Win!" : "The Second Player Win!";
         }
-
     }
 
     private static String compareRepeatCard(List<Card> cards_1, List<Card> cards_2, int times) {

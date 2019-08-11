@@ -12,6 +12,4 @@ public class  PokerTypeEnum {
     public static final int FOUR_OF_KIND = 8;
     public static final int STRAIGHT_FLUSH = 9;
 
-
-    
 }

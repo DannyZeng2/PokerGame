@@ -28,7 +28,6 @@ public class PokerType {
             return STRAIGHT_FLUSH;
         }
 
-
         return HIGHT_CARD;
     }
 
@@ -72,6 +71,4 @@ public class PokerType {
         }
         return true;
     }
-
-
 }

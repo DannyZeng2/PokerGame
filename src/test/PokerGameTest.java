@@ -353,7 +353,4 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The First Player Win!", result_1);
     }
-
-
-
 }
