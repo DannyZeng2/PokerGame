@@ -157,6 +157,19 @@ public class PokerGameTest {
         Assert.assertEquals("The First Player Win!",result_2);
     }
 
+    @Test
+    public void should_return_dogfall_when_the_two_pair_card_is_same() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
+
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("Dogfall",result_1);
+
+    }
+
 
 
 }
