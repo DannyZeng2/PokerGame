@@ -14,6 +14,10 @@ public class Card {
         return Integer.parseInt(number);
     }
 
+    public String getSuit() {
+        return suit;
+    }
+
     private String formatNumber(String number) {
         switch (number) {
             case "T":
@@ -32,13 +36,7 @@ public class Card {
                 number = "99";
                 break;
         }
-
         return number;
-
-    }
-
-    public String getSuit() {
-        return suit;
     }
 
     private String formatSuit(String suit) {
@@ -54,9 +52,7 @@ public class Card {
                 break;
             default:
                 suit = "4";
-
         }
         return suit;
     }
-
 }

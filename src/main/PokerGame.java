@@ -11,7 +11,6 @@ public class PokerGame {
     private static final int THREE_OF_KIND = 4;
     private static final int FOUR_OF_KIND = 5;
 
-
     public static String play(List<Card> cards_1, List<Card> cards_2) {
         String result = "";
         List<Card> cards1 = cards_1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
@@ -28,11 +27,11 @@ public class PokerGame {
         if (judgeCardsType(cards_1) == PAIR && judgeCardsType(cards_2) == PAIR) {
             Map<Card, Integer> map1 = checkCards(cards_1);
             Map<Card, Integer> map2 = checkCards(cards_2);
-            int bigPair1 = getKey(map1,2).getNumber();
-            int bigPair2 = getKey(map2,2).getNumber();
+            int bigPair1 = getKey(map1, 2).getNumber();
+            int bigPair2 = getKey(map2, 2).getNumber();
             if (bigPair1 == bigPair2) {
-               return compareHighCard(cards_1,cards_2);
-            }else {
+                return compareHighCard(cards_1, cards_2);
+            } else {
                 return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
             }
 
@@ -41,14 +40,26 @@ public class PokerGame {
         if (judgeCardsType(cards_1) == TWO_PAIR && judgeCardsType(cards_2) == TWO_PAIR) {
             Map<Card, Integer> map1 = checkCards(cards_1);
             Map<Card, Integer> map2 = checkCards(cards_2);
-            int bigPair1 = getKey(map1,2).getNumber();
-            int bigPair2 = getKey(map2,2).getNumber();
+            int bigPair1 = getKey(map1, 2).getNumber();
+            int bigPair2 = getKey(map2, 2).getNumber();
             if (bigPair1 == bigPair2) {
-                return compareHighCard(cards_1,cards_2);
-            }else {
+                return compareHighCard(cards_1, cards_2);
+            } else {
                 return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
             }
 
+        }
+
+        if (judgeCardsType(cards_1) == THREE_OF_KIND && judgeCardsType(cards_2) == THREE_OF_KIND) {
+            Map<Card, Integer> map1 = checkCards(cards_1);
+            Map<Card, Integer> map2 = checkCards(cards_2);
+            int bigPair1 = getKey(map1, 3).getNumber();
+            int bigPair2 = getKey(map2, 3).getNumber();
+            if (bigPair1 == bigPair2) {
+                return compareHighCard(cards_1, cards_2);
+            } else {
+                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
+            }
         }
 
         return result;
@@ -57,17 +68,17 @@ public class PokerGame {
 
     private static String compareHighCard(List<Card> cards1, List<Card> cards2) {
 
-        Set<Card> set1 = new HashSet<Card>(cards1);
-        Set<Card> set2 = new HashSet<Card>(cards2);
+        Set<Card> set1 = new HashSet<>(cards1);
+        Set<Card> set2 = new HashSet<>(cards2);
 
-        List<Card> list1 = new ArrayList<Card>(set1);
-        List<Card> list2 = new ArrayList<Card>(set2);
+        List<Card> list1 = new ArrayList<>(set1);
+        List<Card> list2 = new ArrayList<>(set2);
 
         List<Card> result1 = list1.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
         List<Card> result2 = list2.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
 
-        int bigNum1 = result1.get(result1.size()-1).getNumber();
-        int bigNum2 = result2.get(result2.size()-1).getNumber();
+        int bigNum1 = result1.get(result1.size() - 1).getNumber();
+        int bigNum2 = result2.get(result2.size() - 1).getNumber();
 
         if (bigNum1 == bigNum2) {
             return "Dogfall";
@@ -96,7 +107,7 @@ public class PokerGame {
     private static Map<Card, Integer> checkCards(List<Card> cardList) {
         int count = 1;
         List<Card> cards = cardList.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
-        Map<Card, Integer> cardMap = new HashMap<Card, Integer>();
+        Map<Card, Integer> cardMap = new HashMap<>();
         cardMap.put(cards.get(0), count);
         for (int i = 1; i < cards.size(); i++) {
             if (cards.get(i).getNumber() == cards.get(i - 1).getNumber()) {
@@ -111,7 +122,7 @@ public class PokerGame {
     }
 
     private static int maxMapValue(Map<Card, Integer> map) {
-        List<Integer> values = new ArrayList<Integer>(map.values());
+        List<Integer> values = new ArrayList<>(map.values());
         Collections.sort(values);
         return values.get(values.size() - 1);
     }
@@ -125,12 +136,10 @@ public class PokerGame {
             }
         }
 
-        if(pairList.size() == 1){
+        if (pairList.size() == 1) {
             return pairList.get(0);
         }
-        if(pairList.size() == 2) {
-            return pairList.get(0).getNumber()>pairList.get(1).getNumber()? pairList.get(0):pairList.get(1);
-        }
-        return null;
+
+        return pairList.get(0).getNumber() > pairList.get(1).getNumber() ? pairList.get(0) : pairList.get(1);
     }
 }
