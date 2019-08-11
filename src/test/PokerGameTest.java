@@ -8,23 +8,10 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+
+import static main.CardEnum.*;
 
 public class PokerGameTest {
-
-    private static final Card H2 = new Card("2", "H");
-    private static final Card D3 = new Card("3", "D");
-    private static final Card S4 = new Card("4", "S");
-    private static final Card H5 = new Card("5", "H");
-    private static final Card C6 = new Card("6", "C");
-    private static final Card D7 = new Card("7", "D");
-    private static final Card S8 = new Card("8", "S");
-    private static final Card C9 = new Card("9", "C");
-    private static final Card C10 = new Card("10", "C");
-    private static final Card H11 = new Card("J", "H");
-    private static final Card S12 = new Card("Q", "S");
-    private static final Card D13 = new Card("K", "D");
-    private static final Card SAce = new Card("A", "S");
 
     @Test
     public void should_return_winner_when_compare_big_number() {
@@ -246,4 +233,6 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The Second Player Win!", result_1);
     }
+
+
 }

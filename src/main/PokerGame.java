@@ -32,7 +32,22 @@ public class PokerGame {
         if (cardsType == STRAIGHT|| cardsType == HIGHT_CARD) {
             return compareHighCard(cards1, cards2);
         }
+
+        if (cardsType == FLUSH ) {
+            return compareSuit(cards_1, cards_2);
+        }
         return result;
+
+    }
+
+    private static String compareSuit(List<Card> cards_1, List<Card> cards_2) {
+        int suit1 = cards_1.get(0).getSuit();
+        int suit2 = cards_1.get(0).getSuit();
+        if(suit1 == suit2) {
+            return compareHighCard(cards_1, cards_2);
+        } else {
+            return suit1 > suit2 ? "The First Player Win!" : "The Second Player Win!";
+        }
 
     }
 

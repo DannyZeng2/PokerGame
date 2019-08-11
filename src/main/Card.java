@@ -14,8 +14,8 @@ public class Card {
         return Integer.parseInt(number);
     }
 
-    public String getSuit() {
-        return suit;
+    public int getSuit() {
+        return Integer.parseInt(suit);
     }
 
     private String formatNumber(String number) {
