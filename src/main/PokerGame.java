@@ -29,6 +29,10 @@ public class PokerGame {
             return compareRepeatCard(cards_1, cards_2, 3);
         }
 
+        if (cardsType == FOUR_OF_KIND ) {
+            return compareRepeatCard(cards_1, cards_2, 4);
+        }
+
         if (cardsType == STRAIGHT|| cardsType == HIGHT_CARD) {
             return compareHighCard(cards1, cards2);
         }

@@ -289,4 +289,15 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The First Player Win!", result_1);
     }
+    @Test
+    public void should_return_winner_when_both_side_is_four_of_a_kind() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, S2, S12);
+        List<Card> cards_2 = Arrays.asList(C3, D3, H3, S3, DAce);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!", result_1);
+    }
+
 }
