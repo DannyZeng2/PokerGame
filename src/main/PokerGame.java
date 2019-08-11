@@ -2,15 +2,9 @@ package main;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import static main.PokerTypeEnum.*;
 
 public class PokerGame {
-
-    private static final int HIGHT_CARD = 1;
-    private static final int PAIR = 2;
-    private static final int TWO_PAIR = 3;
-    private static final int THREE_OF_KIND = 4;
-    private static final int FOUR_OF_KIND = 5;
-    private static final int STRAIGHT = 6;
 
     public static String play(List<Card> cards_1, List<Card> cards_2) {
         String result = "";
@@ -27,10 +21,6 @@ public class PokerGame {
             cardsType = cardsType1;
         }
 
-        if (cardsType == STRAIGHT|| cardsType == HIGHT_CARD) {
-            return compareHighCard(cards1, cards2);
-        }
-
         if (cardsType == PAIR || cardsType == TWO_PAIR) {
             return compareRepeatCard(cards_1, cards_2, 2);
         }
@@ -39,6 +29,9 @@ public class PokerGame {
             return compareRepeatCard(cards_1, cards_2, 3);
         }
 
+        if (cardsType == STRAIGHT|| cardsType == HIGHT_CARD) {
+            return compareHighCard(cards1, cards2);
+        }
         return result;
 
     }

@@ -3,14 +3,9 @@ package main;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PokerType {
+import static main.PokerTypeEnum.*;
 
-    private static final int HIGHT_CARD = 1;
-    private static final int PAIR = 2;
-    private static final int TWO_PAIR = 3;
-    private static final int THREE_OF_KIND = 4;
-    private static final int FOUR_OF_KIND = 5;
-    private static final int STRAIGHT = 6;
+public class PokerType {
 
     public static int judgeCardsType(List<Card> cardList) {
         Map<Card, Integer> map = checkCards(cardList);
@@ -25,8 +20,20 @@ public class PokerType {
             return FOUR_OF_KIND;
         } else if (isStraight(cardList)){
             return STRAIGHT;
+        }else if (isFlush(cardList)) {
+            return FLUSH;
         }
+
         return HIGHT_CARD;
+    }
+
+    private static boolean isFlush(List<Card> cardList) {
+        for(int i=1;i<cardList.size();i++){
+            if(cardList.get(i).getSuit() != cardList.get(i-1).getSuit()){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static Map<Card, Integer> checkCards(List<Card> cardList) {
