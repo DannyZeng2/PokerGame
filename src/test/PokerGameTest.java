@@ -161,13 +161,23 @@ public class PokerGameTest {
     public void should_return_dogfall_when_the_two_pair_card_is_same() {
         //Given
         List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
-        List<Card> cards_2 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList( FIVE_H, FIVE_H,TWO_H,FOUR_S,  TWO_H);
 
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
         //Then
         Assert.assertEquals("Dogfall",result_1);
+    }
 
+    @Test
+    public void should_compare_with_high_card_when_the_two_pair_card_is_same() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(TWO_H, TWO_H, FIVE_H, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(TWO_H, TWO_H, FIVE_H, King_D, FIVE_H);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!",result);
     }
 
 
