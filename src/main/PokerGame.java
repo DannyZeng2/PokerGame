@@ -38,6 +38,19 @@ public class PokerGame {
 
         }
 
+        if (judgeCardsType(cards_1) == TWO_PAIR && judgeCardsType(cards_2) == TWO_PAIR) {
+            Map<Card, Integer> map1 = checkCards(cards_1);
+            Map<Card, Integer> map2 = checkCards(cards_2);
+            int bigPair1 = getKey(map1,2).getNumber();
+            int bigPair2 = getKey(map2,2).getNumber();
+            if (bigPair1 == bigPair2) {
+                return compareHighCard(cards_1,cards_2);
+            }else {
+                return bigPair1 > bigPair2 ? "The First Player Win!" : "The Second Player Win!";
+            }
+
+        }
+
         return result;
 
     }
@@ -104,11 +117,19 @@ public class PokerGame {
     }
 
     private static Card getKey(Map<Card, Integer> map, int value) {
+        List<Card> pairList = new ArrayList<>();
         for (Card card : map.keySet()) {
             int count = map.get(card);
             if (value == count) {
-                return card;
+                pairList.add(card);
             }
+        }
+
+        if(pairList.size() == 1){
+            return pairList.get(0);
+        }
+        if(pairList.size() == 2) {
+            return pairList.get(0).getNumber()>pairList.get(1).getNumber()? pairList.get(0):pairList.get(1);
         }
         return null;
     }
