@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PokerGameTest {
 
@@ -68,5 +69,4 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("The Second Player Win!",result);
     }
-
 }
