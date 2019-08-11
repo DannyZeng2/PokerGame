@@ -10,6 +10,7 @@ public class PokerGame {
     private static final int TWO_PAIR = 3;
     private static final int THREE_OF_KIND = 4;
     private static final int FOUR_OF_KIND = 5;
+    private static final int STRAIGHT = 6;
 
     public static String play(List<Card> cards_1, List<Card> cards_2) {
         String result = "";
@@ -88,20 +89,21 @@ public class PokerGame {
     }
 
     public static int judgeCardsType(List<Card> cardList) {
-        int type = HIGHT_CARD;
         Map<Card, Integer> map = checkCards(cardList);
 
         if (map.size() == 4) {
-            type = PAIR;
+            return PAIR;
         } else if (map.size() == 3 && maxMapValue(map) == 2) {
-            type = TWO_PAIR;
+            return TWO_PAIR;
         } else if (map.size() == 3 && maxMapValue(map) == 3) {
-            type = THREE_OF_KIND;
+            return THREE_OF_KIND;
         } else if (map.size() == 2) {
-            type = FOUR_OF_KIND;
+            return FOUR_OF_KIND;
+        } else if (isStraight(cardList)){
+            return STRAIGHT;
         }
 
-        return type;
+        return HIGHT_CARD;
     }
 
     private static Map<Card, Integer> checkCards(List<Card> cardList) {
@@ -141,5 +143,14 @@ public class PokerGame {
         }
 
         return pairList.get(0).getNumber() > pairList.get(1).getNumber() ? pairList.get(0) : pairList.get(1);
+    }
+
+    private static boolean isStraight(List<Card> cardList) {
+        for(int i=1;i<cardList.size();i++){
+            if(cardList.get(i).getNumber() != cardList.get(i-1).getNumber() + 1){
+                return false;
+            }
+        }
+        return true;
     }
 }
