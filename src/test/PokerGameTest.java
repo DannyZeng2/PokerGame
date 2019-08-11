@@ -57,4 +57,16 @@ public class PokerGameTest {
         //Then
         Assert.assertEquals("Dogfall",result);
     }
+
+    @Test
+    public void should_return_winner_when_the_compare_according_to_pair() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(THREE_D, TWO_H, THREE_D, FOUR_S, FIVE_H);
+        List<Card> cards_2 = Arrays.asList(SIX_C, FIVE_H, THREE_D, SIX_C, FOUR_S);
+        //When
+        String result = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The Second Player Win!",result);
+    }
+
 }
