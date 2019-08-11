@@ -310,6 +310,16 @@ public class PokerGameTest {
         Assert.assertEquals("The First Player Win!", result_1);
     }
 
+    @Test
+    public void should_return_winner_when_four_of_a_kind_compare_to_full_flush() {
+        //Given
+        List<Card> cards_1 = Arrays.asList(C2, D2, H2, S2, S12);
+        List<Card> cards_2 = Arrays.asList(S4, S5, S8, S3, S12);
+        //When
+        String result_1 = PokerGame.play(cards_1, cards_2);
+        //Then
+        Assert.assertEquals("The First Player Win!", result_1);
+    }
 
 
 }
