@@ -42,7 +42,7 @@ public class PokerGame {
 
     private static String compareSuit(List<Card> cards_1, List<Card> cards_2) {
         int suit1 = cards_1.get(0).getSuit();
-        int suit2 = cards_1.get(0).getSuit();
+        int suit2 = cards_2.get(0).getSuit();
         if(suit1 == suit2) {
             return compareHighCard(cards_1, cards_2);
         } else {
