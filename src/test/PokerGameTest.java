@@ -257,9 +257,14 @@ public class PokerGameTest {
         //Given
         List<Card> cards_1 = Arrays.asList(C2, D2, H2, HAce, DAce);
         List<Card> cards_2 = Arrays.asList(HAce, CAce, C12, SAce, S12);
+
+        List<Card> cards_3 = Arrays.asList(D3, S12, C12, C3, D12);
+        List<Card> cards_4 = Arrays.asList(C2, S3, H3, D3, S2);
         //When
         String result_1 = PokerGame.play(cards_1, cards_2);
+        String result_2 = PokerGame.play(cards_3, cards_4);
         //Then
         Assert.assertEquals("The Second Player Win!", result_1);
+        Assert.assertEquals("The First Player Win!", result_2);
     }
 }

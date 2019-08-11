@@ -8,7 +8,7 @@ import static main.PokerTypeEnum.*;
 public class PokerType {
 
     public static int judgeCardsType(List<Card> cardList) {
-        Map<Card, Integer> map = checkCards(cardList);
+        Map<Integer, Integer> map = checkCards(cardList);
 
         if (map.size() == 4) {
             return PAIR;
@@ -38,24 +38,24 @@ public class PokerType {
         return true;
     }
 
-    public static Map<Card, Integer> checkCards(List<Card> cardList) {
+    public static Map<Integer, Integer> checkCards(List<Card> cardList) {
         int count = 1;
         List<Card> cards = cardList.stream().sorted(Comparator.comparing(Card::getNumber)).collect(Collectors.toList());
-        Map<Card, Integer> cardMap = new HashMap<>();
-        cardMap.put(cards.get(0), count);
+        Map<Integer, Integer> cardMap = new HashMap<>();
+        cardMap.put(cards.get(0).getNumber(), count);
         for (int i = 1; i < cards.size(); i++) {
             if (cards.get(i).getNumber() == cards.get(i - 1).getNumber()) {
                 count++;
-                cardMap.put(cards.get(i), count);
+                cardMap.put(cards.get(i).getNumber(), count);
             } else {
                 count = 1;
-                cardMap.put(cards.get(i), count);
+                cardMap.put(cards.get(i).getNumber(), count);
             }
         }
         return cardMap;
     }
 
-    private static int maxMapValue(Map<Card, Integer> map) {
+    private static int maxMapValue(Map<Integer, Integer> map) {
         List<Integer> values = new ArrayList<>(map.values());
         Collections.sort(values);
         return values.get(values.size() - 1);

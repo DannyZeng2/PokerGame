@@ -46,12 +46,12 @@ public class PokerGame {
     }
 
     private static String compareFullHouse(List<Card> cards_1, List<Card> cards_2) {
-        Map<Card, Integer> map1 = PokerType.checkCards(cards_1);
-        Map<Card, Integer> map2 = PokerType.checkCards(cards_2);
-        int threeKind1 = getKey(map1, 3).getNumber();
-        int threeKind2 = getKey(map2, 3).getNumber();
-        int pair1 = getKey(map1, 2).getNumber();
-        int pair2 = getKey(map2, 2).getNumber();
+        Map<Integer, Integer> map1 = PokerType.checkCards(cards_1);
+        Map<Integer, Integer> map2 = PokerType.checkCards(cards_2);
+        int threeKind1 = getKey(map1, 3);
+        int threeKind2 = getKey(map2, 3);
+        int pair1 = getKey(map1, 2);
+        int pair2 = getKey(map2, 2);
         if (threeKind1 == threeKind2) {
             return pair1 > pair2 ? "The First Player Win!" : "The Second Player Win!";
         } else {
@@ -71,10 +71,10 @@ public class PokerGame {
     }
 
     private static String compareRepeatCard(List<Card> cards_1, List<Card> cards_2, int times) {
-        Map<Card, Integer> map1 = PokerType.checkCards(cards_1);
-        Map<Card, Integer> map2 = PokerType.checkCards(cards_2);
-        int bigPair1 = getKey(map1, times).getNumber();
-        int bigPair2 = getKey(map2, times).getNumber();
+        Map<Integer, Integer> map1 = PokerType.checkCards(cards_1);
+        Map<Integer, Integer> map2 = PokerType.checkCards(cards_2);
+        int bigPair1 = getKey(map1, times);
+        int bigPair2 = getKey(map2, times);
         if (bigPair1 == bigPair2) {
             return compareHighCard(cards_1, cards_2);
         } else {
@@ -103,12 +103,12 @@ public class PokerGame {
         }
     }
 
-    private static Card getKey(Map<Card, Integer> map, int value) {
-        List<Card> pairList = new ArrayList<>();
-        for (Card card : map.keySet()) {
-            int count = map.get(card);
+    private static Integer getKey(Map<Integer, Integer> map, int value) {
+        List<Integer> pairList = new ArrayList<>();
+        for (Integer num : map.keySet()) {
+            int count = map.get(num);
             if (value == count) {
-                pairList.add(card);
+                pairList.add(num);
             }
         }
 
@@ -116,7 +116,7 @@ public class PokerGame {
             return pairList.get(0);
         }
 
-        return pairList.get(0).getNumber() > pairList.get(1).getNumber() ? pairList.get(0) : pairList.get(1);
+        return pairList.get(0) > pairList.get(1) ? pairList.get(0) : pairList.get(1);
     }
 
 }
